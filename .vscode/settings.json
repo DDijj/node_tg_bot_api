@@ -1,0 +1,24 @@
+{
+  // 檔案與編碼
+  "files.autoSave": "afterDelay",
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+
+  // 編碼習慣
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+
+  // JavaScript / Node.js
+  "javascript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  // Git
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+
+  // 終端機
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.defaultProfile.windows": null,
+  "terminal.integrated.localEchoEnabled": "on"
+}

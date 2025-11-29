@@ -1,0 +1,91 @@
+{
+  "configurations": [
+
+    {
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/app.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "name": "nodemon",
+      "program": "${workspaceFolder}/app.js",
+      "request": "launch",
+      "restart": true,
+      "runtimeExecutable": "nodemon",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "name": "Launch index.html",
+      "file": "${workspaceFolder}/index.html"
+    },
+    {
+      "name": "Attach to Edge",
+      "port": 9222,
+      "request": "attach",
+      "type": "msedge",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "cmake",
+      "request": "launch",
+      "name": "CMake: 已從外部啟動",
+      "cmakeDebugType": "external",
+      "pipeName": "<...>"
+    },
+    {
+      "type": "cmake",
+      "request": "launch",
+      "name": "CMake: 設定專案",
+      "cmakeDebugType": "configure",
+      "clean": false,
+      "configureAll": false
+    },
+    {
+      "name": "Attach to Chrome",
+      "port": 9222,
+      "request": "attach",
+      "type": "chrome",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "cmake",
+      "request": "launch",
+      "name": "CMake: 指令碼偵錯",
+      "cmakeDebugType": "script",
+      "scriptPath": "${workspaceFolder}/<...>.cmake"
+    },
+    {},
+    {
+      "name": "Launch Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch npm audit fix --force",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "audit",
+        "fix",
+        "--force"
+      ],
+      "cwd": "${workspaceFolder}",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

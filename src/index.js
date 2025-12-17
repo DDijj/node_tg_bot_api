@@ -40,10 +40,10 @@ bot.on('sticker', async (msg) => {
   bot.sendMessage(msg.chat.id, 'Sticker logged.');
 });
 
-bot.on('text', (msg) => {
-  bot.sendMessage(msg.chat.id, `You said: ${msg.text}`);
-});
-
-bot.on('sticker', (msg) => {
-  bot.sendMessage(msg.chat.id, 'I see a sticker 👀');
-});
+// bot.on('text', (msg) => {
+//   bot.sendMessage(msg.chat.id, `You said: ${msg.text}`);
+// });
+// 
+// bot.on('sticker', (msg) => {
+//   bot.sendMessage(msg.chat.id, 'I see a sticker 👀');
+// });

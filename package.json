@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/DDijj/node_tg_bot_api/issues"
   },
-  "homepage": "https://github.com/DDijj/node_tg_bot_api#readme"
+  "homepage": "https://github.com/DDijj/node_tg_bot_api#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.67.0"
+  }
 }

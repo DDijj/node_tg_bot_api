@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import fs from 'fs/promises';
 import TelegramBot from 'node-telegram-bot-api';
 
 const token = process.env.BOT_TOKEN;
@@ -18,9 +19,21 @@ bot.onText(/\/help/, (msg) => {
   );
 });
 
-// bot.on('message', (msg) => {
-//   bot.sendMessage(msg.chat.id, 'Bot is alive.');
-// });
+bot.on('sticker', async (msg) => {
+  const log = {
+    from: msg.from.username,
+    file_id: msg.sticker.file_id,
+    date: new Date().toISOString()
+  };
+
+  await fs.appendFile(
+    'sticker.log',
+    JSON.stringify(log) + '\n'
+  );
+
+  bot.sendMessage(msg.chat.id, 'Sticker logged.');
+});
+
 bot.on('text', (msg) => {
   bot.sendMessage(msg.chat.id, `You said: ${msg.text}`);
 });

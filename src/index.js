@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import axios from 'axios';
 import fs from 'fs/promises';
 import TelegramBot from 'node-telegram-bot-api';
 
@@ -17,6 +18,11 @@ bot.onText(/\/help/, (msg) => {
     msg.chat.id,
     '/start - check bot status\n/help - show commands'
   );
+});
+
+bot.onText(/\/quote/, async (msg) => {
+  const res = await axios.get('https://api.quotable.io/random');
+  bot.sendMessage(msg.chat.id, res.data.content);
 });
 
 bot.on('sticker', async (msg) => {

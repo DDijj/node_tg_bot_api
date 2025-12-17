@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/DDijj/node_tg_bot_api#readme",
   "dependencies": {
+    "axios": "^1.13.2",
     "dotenv": "^17.2.3",
     "node-telegram-bot-api": "^0.67.0"
   }

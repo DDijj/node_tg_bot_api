@@ -8,4 +8,9 @@ export function createBot() {
 
     console.log('🤖 Bot created');
     return bot;
+    bot.onText(/\/reset/, (msg) => {
+        bot.sendMessage(msg.chat.id, '已重設鍵盤', {
+            reply_markup: { remove_keyboard: true }
+        });
+    });
 }

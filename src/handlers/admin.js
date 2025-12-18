@@ -1,15 +1,18 @@
-export function handleAdminCallback(bot, query) {
-  const chatId = query.message.chat.id;
-
-  switch (query.data) {
-    case "announce":
-      bot.sendMessage(chatId, "請輸入公告內容");
-      break;
-
-    case "export_excel":
-      bot.sendMessage(chatId, "Excel 匯出中...");
-      break;
+export const adminKeyboard = {
+  reply_markup: {
+    keyboard: [
+      [
+        {
+          text: "🎮 開始遊戲",
+          web_app: {
+            url: "https://sariah-superintolerable-bart.ngrok-free.dev"
+          }
+        }
+      ],
+      [
+        { text: "/rank" }
+      ]
+    ],
+    resize_keyboard: true
   }
-
-  bot.answerCallbackQuery(query.id);
-}
+};

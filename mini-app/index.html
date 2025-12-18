@@ -1,29 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Telegram Mini Game</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+</head>
 
 <body>
-  <h3>Telegram Bot 控制台</h3>
+  <h2>🎮 點擊小遊戲</h2>
 
-  <input id="chatId" placeholder="Chat ID">
-  <br><br>
-  <input id="text" placeholder="訊息內容">
-  <br><br>
+  <button id="connect">🔗 連接錢包</button>
+  <p id="wallet"></p>
 
-  <button onclick="send()">送出</button>
+  <h3>分數：<span id="score">0</span></h3>
+
+  <button id="click" disabled>👉 點我 +1</button>
+  <button id="submit" disabled>📤 送出成績</button>
 
   <script>
-    function send() {
-      fetch('/api/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chatId: document.getElementById('chatId').value,
-          text: document.getElementById('text').value
-        })
-      })
-        .then(r => r.json())
-        .then(d => alert(JSON.stringify(d)));
-    }
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
+
+    let address = null;
+    let score = 0;
+    let sent = false;
+
+    const tonConnect = new TON_CONNECT_UI.TonConnectUI({
+      manifestUrl: 'https://sariah-superintolerable-bart.ngrok-free.dev/tonconnect-manifest.json'
+    });
+
+    document.getElementById('connect').onclick = async () => {
+      await tonConnect.connectWallet();
+    };
+
+    tonConnect.onStatusChange(wallet => {
+      if (wallet && !address) {
+        address = wallet.account.address;
+        document.getElementById('wallet').innerText = `錢包：${address}`;
+        document.getElementById('click').disabled = false;
+        document.getElementById('submit').disabled = false;
+      }
+    });
+
+    document.getElementById('click').onclick = () => {
+      score++;
+      document.getElementById('score').innerText = score;
+    };
+
+    document.getElementById('submit').onclick = () => {
+      if (sent) return;
+      sent = true;
+
+      tg.sendData(JSON.stringify({
+        address,
+        score
+      }));
+    };
   </script>
 </body>
 

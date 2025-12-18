@@ -1,12 +1,16 @@
 {
   "name": "node_tg_bot_api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "node src/index.js"
   },
+  "description": "",
+  "dev": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon --inspect=3000 bin/www",
+  "prd": "cross-env NODE_ENV=production pm2 start pm2.conf.json",
+  "lint": "eslint --ext .js ./src",
+  "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",
+  "main": "index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DDijj/node_tg_bot_api.git"
@@ -21,6 +25,8 @@
   "dependencies": {
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
-    "node-telegram-bot-api": "^0.67.0"
+    "express": "^5.2.1",
+    "node-telegram-bot-api": "^0.63.0",
+    "xlsx": "^0.18.5"
   }
 }

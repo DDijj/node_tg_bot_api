@@ -1,6 +1,10 @@
 export const adminKeyboard = {
   inline_keyboard: [
-    [{ text: "📢 發公告", callback_data: "announce" }],
-    [{ text: "📊 匯出 Excel", callback_data: "export_excel" }],
+    [{
+      text: "📊 管理後台",
+      web_app: {
+        url: "https://sublimational-apolonia-uncompanioned.ngrok-free.dev"
+      }
+    }]
   ]
 };

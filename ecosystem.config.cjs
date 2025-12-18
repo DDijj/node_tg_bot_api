@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: "telegram-system",
+    name: "telegram-bot",
     script: "src/index.js",
     env: {
       NODE_ENV: "production"

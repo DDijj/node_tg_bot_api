@@ -1,24 +1,19 @@
-import crypto from "crypto";
+import express from "express";
+import bot from "../bots/botA.js";
+import path from "path";
 
-function verifyTelegram(initData, botToken) {
-  const secret = crypto
-    .createHmac("sha256", "WebAppData")
-    .update(botToken)
-    .digest();
+const app = express();
+app.use(express.json());
 
-  const params = new URLSearchParams(initData);
-  const hash = params.get("hash");
-  params.delete("hash");
+// Telegram webhook
+app.post("/bot", (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
 
-  const dataCheck = [...params.entries()]
-    .sort()
-    .map(([k, v]) => `${k}=${v}`)
-    .join("\n");
+// WebApp 頁面
+app.get("/mini", (req, res) => {
+  res.sendFile(path.resolve("mini-app/mini.html"));
+});
 
-  const hmac = crypto
-    .createHmac("sha256", secret)
-    .update(dataCheck)
-    .digest("hex");
-
-  return hmac === hash;
-}
+export default app;

@@ -1,13 +1,24 @@
-import express from "express";
-import bot from "./bot.js";
+import crypto from "crypto";
 
-const app = express();
-app.use(express.json());
+function verifyTelegram(initData, botToken) {
+  const secret = crypto
+    .createHmac("sha256", "WebAppData")
+    .update(botToken)
+    .digest();
 
-app.post("/send", async (req, res) => {
-  const { chatId, text } = req.body;
-  await bot.sendMessage(chatId, text);
-  res.json({ ok: true });
-});
+  const params = new URLSearchParams(initData);
+  const hash = params.get("hash");
+  params.delete("hash");
 
-export default app;
+  const dataCheck = [...params.entries()]
+    .sort()
+    .map(([k, v]) => `${k}=${v}`)
+    .join("\n");
+
+  const hmac = crypto
+    .createHmac("sha256", secret)
+    .update(dataCheck)
+    .digest("hex");
+
+  return hmac === hash;
+}

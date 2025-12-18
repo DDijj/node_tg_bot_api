@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h3>Bot 控制台</h3>
+
+    <button onclick="send()">發送訊息</button>
+
+    <script>
+        function send() {
+            fetch('127.0.0.1:4040', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chatId: '金胖胖',
+                    text: 'https://sariah-superintolerable-bart.ngrok-free.dev'
+                })
+            });
+        }
+    </script>
+</body>
+
+</html>

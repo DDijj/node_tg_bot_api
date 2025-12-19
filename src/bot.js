@@ -1,16 +1,19 @@
+// src/bot.js
 import TelegramBot from 'node-telegram-bot-api';
-import { BOT_TOKEN } from './config/env.js';
+
+let botInstance;
 
 export function createBot() {
-    const bot = new TelegramBot(BOT_TOKEN, {
-        polling: true
+    if (botInstance) return botInstance;
+
+    const token = process.env.BOT_TOKEN;
+    if (!token) {
+        throw new Error('❌ BOT_TOKEN not found in env');
+    }
+
+    botInstance = new TelegramBot(token, {
+        polling: false // 🔴 一定要 false
     });
 
-    console.log('🤖 Bot created');
-    return bot;
-    bot.onText(/\/reset/, (msg) => {
-        bot.sendMessage(msg.chat.id, '已重設鍵盤', {
-            reply_markup: { remove_keyboard: true }
-        });
-    });
+    return botInstance;
 }

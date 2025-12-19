@@ -1,25 +1,23 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export function startServer(bot) {
     const app = express();
     app.use(express.json());
 
-    // 健康檢查（很重要）
+    // 健康檢查
     app.get('/', (req, res) => {
         res.send('OK');
     });
 
-    // 網頁控制 Bot 的 API
-    app.post('/api/send', (req, res) => {
-        const { chatId, text } = req.body;
-
-        if (!chatId || !text) {
-            return res.status(400).json({ error: 'missing params' });
-        }
-
-        bot.sendMessage(chatId, text);
-        res.json({ ok: true });
-    });
+    // ⭐ 讓 mini-app 能被存取
+    app.use('/mini-app', express.static(
+        path.join(__dirname, '../mini-app')
+    ));
 
     app.listen(3000, () => {
         console.log('🌐 Web API running on port 3000');

@@ -22,6 +22,15 @@
   <div id="status"></div>
 
   <script type="module" src="/js/app.js"></script>
+  <script>
+    if (window.Telegram?.WebApp) {
+      Telegram.WebApp.ready();
+      console.log('Telegram Mini App ready');
+    } else {
+      console.log('Not in Telegram');
+    }
+  </script>
+
 </body>
 
 </html>

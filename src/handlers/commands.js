@@ -14,7 +14,7 @@ bot.onText(/\/start/, (msg) => {
                 {
                     text: '🎮 開始遊戲',
                     web_app: {
-                        url: 'https://sariah-superintolerable-bart.ngrok-free.dev/mini-app/index.app'
+                        url: 'https://sariah-superintolerable-bart.ngrok-free.dev/mini-app/'
                     }
                 }
             ]]

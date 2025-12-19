@@ -9,7 +9,7 @@ export function registerKeyboards(bot) {
                         {
                             text: '🖥 打開面板',
                             web_app: {
-                                url: 'https://sariah-superintolerable-bart.ngrok-free.dev'
+                                url: 'https://sariah-superintolerable-bart.ngrok-free.dev/mini-app'
                             }
                         }
                     ]
@@ -18,6 +18,18 @@ export function registerKeyboards(bot) {
         });
     });
 }
+bot.sendMessage(chatId, '開啟遊戲', {
+    reply_markup: {
+        inline_keyboard: [[
+            {
+                text: '🎮 開啟 Mini App',
+                web_app: {
+                    url: 'https://sariah-superintolerable-bart.ngrok-free.dev/mini-app'
+                }
+            }
+        ]]
+    }
+});
 
 export function registerBuiltinKeyboards(bot) {
     bot.on('callback_query', (q) => {

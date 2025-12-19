@@ -10,7 +10,7 @@ bot.on('message', (msg) => {
 
     bot.sendMessage(
       chatId,
-      `✅ 成績已送出\n\n錢包：${address}\n分數：${score}`
+      `✅ 成績已送出\n\n錢包:${address}\n分數:${score}`
     );
   }
 });

@@ -7,7 +7,15 @@
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+  <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 
+  <script>
+    const tonConnect = new TON_CONNECT_UI.TonConnectUI({
+      manifestUrl: 'https://sariah-superintolerable-bart.ngrok-free.dev/mini-app/tonconnect-manifest.json'
+    });
+  </script>
+
+  <script type="module" src="/js/app.js"></script>
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 

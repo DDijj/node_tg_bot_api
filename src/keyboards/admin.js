@@ -1,10 +1,11 @@
-export const adminKeyboard = {
-  inline_keyboard: [
-    [{
-      text: "📊 管理後台",
-      web_app: {
-        url: "https://sublimational-apolonia-uncompanioned.ngrok-free.dev"
-      }
-    }]
-  ]
-};
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+
+  if (msg.text === '個人頻道 / 群列表') {
+    bot.sendMessage(chatId, '這裡是你的頻道列表');
+  }
+
+  if (msg.text === '定時推送廣告庫') {
+    bot.sendMessage(chatId, '廣告排程設定中');
+  }
+});

@@ -12,7 +12,7 @@ export function createBot() {
     }
 
     botInstance = new TelegramBot(token, {
-        polling: false // 🔴 一定要 false
+        polling: true // 🔴 一定要 開啟 long polling
     });
 
     return botInstance;

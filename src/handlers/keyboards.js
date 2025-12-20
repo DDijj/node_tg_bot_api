@@ -1,26 +1,14 @@
-export function registerKeyboards(bot) {
-    bot.onText(/控制台/, (msg) => {
-        console.log('📥 控制台 handler triggered');
+bot.on('callback_query', async (query) => {
+    const chatId = query.message.chat.id;
+    const data = query.data;
 
-        bot.sendMessage(msg.chat.id, '開啟控制面板', {
-            reply_markup: {
-                inline_keyboard: [
-                    [
-                        {
-                            text: '🖥 打開面板',
-                            web_app: {
-                                url: 'https://sariah-superintolerable-bart.ngrok-free.dev/mini-app'
-                            }
-                        }
-                    ]
-                ]
-            }
-        });
-    });
-}
+    if (data === 'INVITE_BOT') {
+        await bot.sendMessage(chatId, '你點了「邀請機器人」');
+    }
 
-export function registerBuiltinKeyboards(bot) {
-    bot.on('callback_query', (q) => {
-        bot.answerCallbackQuery(q.id, { text: '收到 callback' });
-    });
-}
+    if (data === 'UPLOAD_PRIVATE') {
+        await bot.sendMessage(chatId, '你點了「上傳私有資料源」');
+    }
+
+    await bot.answerCallbackQuery(query.id);
+});

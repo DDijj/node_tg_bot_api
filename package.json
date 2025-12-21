@@ -2,7 +2,7 @@
   "name": "node_tg_bot_api",
   "version": "1.0.0",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node -r dotenv/config src/index.js"
   },
   "description": "",
   "dev": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon --inspect=3000 bin/telegram-bot",

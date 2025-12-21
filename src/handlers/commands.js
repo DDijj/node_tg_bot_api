@@ -1,20 +1,9 @@
-export function registerCommands(bot) {
-    bot.onText(/\/start/, (msg) => {
-        bot.sendMessage(msg.chat.id, '歡迎使用機器人');
-    });
+import start from '../commands/start.js';
+import help from '../commands/help.js';
+import rank from '../commands/rank.js';
 
-    bot.onText(/\/help/, (msg) => {
-        bot.sendMessage(msg.chat.id, '可用指令：/start /help');
-    });
+export function registerCommands(bot) {
+  if (typeof start === 'function') start(bot);
+  if (typeof help === 'function') help(bot);
+  if (typeof rank === 'function') rank(bot);
 }
-bot.onText(/\/start/, (msg) => {
-    bot.sendMessage(msg.chat.id, '請選擇操作', {
-        reply_markup: {
-            keyboard: [
-                ['🌐 啟動 App'],
-                ['🟢 點擊賺分']
-            ],
-            resize_keyboard: true
-        }
-    });
-});

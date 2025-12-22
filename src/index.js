@@ -1,25 +1,40 @@
 import TelegramBot from 'node-telegram-bot-api';
-import express from 'express';
+import 'dotenv/config';
 
-const token = process.env.BOT_TOKEN || '你的TOKEN';
+const token = process.env.BOT_TOKEN;
 
-// ✅ polling 一定要開
+if (!token) {
+  console.error('❌ BOT_TOKEN not found in .env');
+  process.exit(1);
+}
+
 const bot = new TelegramBot(token, { polling: true });
 
-console.log('🤖 Telegram Bot polling started');
-
-// （可選）Web API
-const app = express();
-app.get('/', (req, res) => {
-  res.send('OK');
+bot.onText(/\/start/, (msg) => {
+  bot.sendMessage(
+    msg.chat.id,
+    '選一個功能',
+    {
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '點擊賺分', callback_data: 'click' }],
+          [{ text: '說明', callback_data: 'help' }]
+        ]
+      }
+    }
+  );
 });
 
-app.listen(3000, () => {
-  console.log('🌐 Web API running on port 3000');
+bot.on('callback_query', (q) => {
+  bot.answerCallbackQuery(q.id);
+
+  if (q.data === 'click') {
+    bot.sendMessage(q.message.chat.id, '你點了按鈕');
+  }
+
+  if (q.data === 'help') {
+    bot.sendMessage(q.message.chat.id, '這是說明');
+  }
 });
 
-// 一定要有，不然你會以為沒連到
-bot.on('message', (msg) => {
-  console.log('📩 收到:', msg.text);
-  bot.sendMessage(msg.chat.id, '我有收到');
-});
+console.log('✅ Bot running in polling mode');

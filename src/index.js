@@ -1,3 +1,4 @@
+console.log('🔥 BOT ENTRY LOADED');
 import 'dotenv/config';
 import { createBot } from './bots/bot.js';
 import { registerHandlers } from './bots/handlers.js';

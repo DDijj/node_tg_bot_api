@@ -6,7 +6,7 @@ import TelegramBot from 'node-telegram-bot-api';
  */
 export default function createBot(token) {
   const bot = new TelegramBot(token, {
-    polling: true
+    polling: true,
   });
 
   /* 基本生命訊號 */
